@@ -1,97 +1,237 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #FDF5F5;
-  color: #333;
+/* ------------------------- */
+/* Reset e estilo base       */
+/* ------------------------- */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: #fdf5f5;
+  color: #2e2e2e;
+  line-height: 1.6;
+}
+
+/* ------------------------- */
+/* Navegação                 */
+/* ------------------------- */
 nav {
-  background: #5C0A0A;
-  padding: 0.8rem 1rem;
+  background: #5c0a0a;
+  padding: 1rem;
   text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
 nav ul li a {
-  color: #FDF5F5;
+  color: #fdf5f5;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
-  font-size: 0.95rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  font-size: 1rem;
+  padding-bottom: 3px;
 }
 
 nav ul li a:hover {
-  color: #FFBABA;
+  color: #ffbaba;
+  border-bottom: 2px solid #ffbaba;
 }
 
+/* ------------------------- */
+/* Cabeçalho                 */
+/* ------------------------- */
 header {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem 2rem;
 }
 
 header h1 {
-  color: #5C0A0A;
-  font-size: 2rem;
-  line-height: 1.2;
+  color: #5c0a0a;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* ------------------------- */
+/* Descrição                 */
+/* ------------------------- */
 .descricao {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
+  font-size: 1.1rem;
+  color: #444;
 }
 
 .descricao p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1.2rem;
   text-align: justify;
 }
 
-.galeria {
+/* ------------------------- */
+/* Galerias de imagens       */
+/* ------------------------- */
+.galeria,
+.grito,
+.pessoa,
+.tatuagem,
+.paisagem,
+.som,
+.arte,
+.animais,
+.skate {
   max-width: 1200px;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  margin: 4rem auto;
   padding: 0 1rem;
 }
 
-.galeria img {
+.galeria h1,
+.grito h1,
+.pessoa h1,
+.tatuagem h1,
+.paisagem h1,
+.som h1,
+.arte h1,
+.animais h1,
+.skate h1 {
+  text-align: center;
+  color: #5c0a0a;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.galeria h1::after,
+.grito h1::after,
+.pessoa h1::after,
+.tatuagem h1::after,
+.paisagem h1::after,
+.som h1::after,
+.arte h1::after,
+.animais h1::after,
+.skate h1::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: #5c0a0a;
+  display: block;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Grid moderno */
+.grito,
+.pessoa,
+.tatuagem,
+.paisagem,
+.som,
+.arte,
+.animais,
+.skate {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+}
+
+.grito img,
+.pessoa img,
+.tatuagem img,
+.paisagem img,
+.som img,
+.arte img,
+.animais img,
+.skate img {
   width: 100%;
-  height: 250px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid #5C0A0A;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 12px;
+  border: 2px solid #5c0a0a;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
 }
 
-.galeria img:hover {
+.grito img:hover,
+.pessoa img:hover,
+.tatuagem img:hover,
+.paisagem img:hover,
+.som img:hover,
+.arte img:hover,
+.animais img:hover,
+.skate img:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* ------------------------- */
+/* Lightbox (ampliar imagem) */
+/* ------------------------- */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+  border: 3px solid #fff;
+}
+
+#lightbox:target {
+  display: flex;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ------------------------- */
+/* Responsividade            */
+/* ------------------------- */
 @media (max-width: 900px) {
   header h1 {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 
-  .galeria img {
+  .grito img,
+  .pessoa img,
+  .tatuagem img,
+  .paisagem img,
+  .som img,
+  .arte img,
+  .animais img,
+  .skate img {
     height: 200px;
   }
 }
 
 @media (max-width: 600px) {
   nav ul {
-    flex-direction: row;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   nav ul li a {
@@ -99,19 +239,29 @@ header h1 {
   }
 
   header h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
-  .descricao {
-    padding: 0 0.5rem;
+  .grito,
+  .pessoa,
+  .tatuagem,
+  .paisagem,
+  .som,
+  .arte,
+  .animais,
+  .skate {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8rem;
   }
 
-  .galeria {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.5rem;
-  }
-
-  .galeria img {
-    height: 150px;
+  .grito img,
+  .pessoa img,
+  .tatuagem img,
+  .paisagem img,
+  .som img,
+  .arte img,
+  .animais img,
+  .skate img {
+    height: 160px;
   }
 }
